@@ -1,11 +1,13 @@
-declare const kuromoji: any
+import { KuromojiBuilder, Tokenizer } from './KuromojiTypes'
 
-export const startKuromoji = async () => {
+declare const kuromoji: KuromojiBuilder
+
+export const startKuromoji = async (): Promise<Tokenizer> => {
   console.log('Loading Kuromoji ...')
 
   return new Promise((resolve, reject) => {
     kuromoji.builder({ dicPath: '/dict' })
-      .build(async (err: boolean, tokenizer: any) => {
+      .build(async (err: boolean, tokenizer: Tokenizer) => {
         if (err) {
           console.log(err)
           reject(err)

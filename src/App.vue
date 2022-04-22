@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { onMounted } from 'vue'
 import * as kuromoji from './utils/kuromoji'
+import { Tokenizer } from './utils/KuromojiTypes'
 
 onMounted(async () => {
-  const tokenizer: any = await kuromoji.startKuromoji()
+  const tokenizer: Tokenizer = await kuromoji.startKuromoji()
   console.log(tokenizer.tokenize('こんにちは'))
 })
 
