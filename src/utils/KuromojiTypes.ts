@@ -1,5 +1,7 @@
 export type Tokenizer = {
-    tokenize: (text: string) => object;
+    tokenize: (
+        text: string
+    ) => object;
 }
 
 export type KuromojiBuild = {
@@ -12,5 +14,9 @@ export type KuromojiBuild = {
 }
 
 export type KuromojiBuilder = {
-    builder: (dicPath: { dicPath: string }) => KuromojiBuild
+    builder: (
+        dicPath: {
+            dicPath: string
+        }
+    ) => KuromojiBuild
 }
