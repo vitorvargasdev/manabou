@@ -1,10 +1,10 @@
-export type Tokenizer = {
+type Tokenizer = {
     tokenize: (
         text: string
     ) => object;
 }
 
-export type KuromojiBuild = {
+type KuromojiBuild = {
     build: (
         token: (
             err: boolean,
@@ -13,10 +13,12 @@ export type KuromojiBuild = {
     ) => Tokenizer;
 }
 
-export type KuromojiBuilder = {
+type KuromojiBuilder = {
     builder: (
         dicPath: {
             dicPath: string
         }
     ) => KuromojiBuild
 }
+
+export { Tokenizer, KuromojiBuilder }
