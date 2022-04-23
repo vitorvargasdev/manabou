@@ -1,17 +1,16 @@
-/* eslint-disable camelcase */
 type Tokenize = {
-    basic_form: string
-    conjugated_type: string
+    'basic_form': string
+    'conjugated_type': string
     pos: string
-    pos_detail_1: string
-    pos_detail_2: string
-    pos_detail_3: string
+    'pos_detail_1': string
+    'pos_detail_2': string
+    'pos_detail_3': string
     pronunciation: string
     reading: string
-    surface_form: string
-    word_id: string
-    word_position: string
-    word_type: string
+    'surface_form': string
+    'word_id': string
+    'word_position': string
+    'word_type': string
 }
 
 type Tokenizer = {
