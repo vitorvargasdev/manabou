@@ -9,15 +9,13 @@ export const startKuromoji = async (): Promise<Tokenizer> => {
     kuromoji.builder({ dicPath: '/dict' })
       .build(async (err: boolean, tokenizer: Tokenizer) => {
         if (err) {
-          console.log(err)
-          reject(err)
-          return
+          console.log(tokenizer)
+          reject(tokenizer)
         }
 
         console.log('Kuromoji loaded')
 
         resolve(tokenizer)
-        return tokenizer
       })
   })
 }

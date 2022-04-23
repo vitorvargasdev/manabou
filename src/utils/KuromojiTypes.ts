@@ -1,7 +1,23 @@
+/* eslint-disable camelcase */
+type Tokenize = {
+    basic_form: string
+    conjugated_type: string
+    pos: string
+    pos_detail_1: string
+    pos_detail_2: string
+    pos_detail_3: string
+    pronunciation: string
+    reading: string
+    surface_form: string
+    word_id: string
+    word_position: string
+    word_type: string
+}
+
 type Tokenizer = {
     tokenize: (
         text: string
-    ) => object;
+    ) => Tokenize[]
 }
 
 type KuromojiBuild = {
@@ -10,14 +26,16 @@ type KuromojiBuild = {
             err: boolean,
             tokenizer: Tokenizer
         ) => object
-    ) => Tokenizer;
+    ) => Tokenizer
+}
+
+type DicPath = {
+    dicPath: string
 }
 
 type KuromojiBuilder = {
     builder: (
-        dicPath: {
-            dicPath: string
-        }
+        dicPath: DicPath
     ) => KuromojiBuild
 }
 

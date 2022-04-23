@@ -6,6 +6,7 @@ import { Tokenizer } from './utils/KuromojiTypes'
 onMounted(async () => {
   const tokenizer: Tokenizer = await kuromoji.startKuromoji()
   console.log(tokenizer.tokenize('こんにちは'))
+  // console.log(tokenizer.tokenize('こんにちは'))
 })
 
 </script>
