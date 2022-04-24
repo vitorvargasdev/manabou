@@ -2955,38 +2955,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"app@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "app@workspace:."
-  dependencies:
-    "@typescript-eslint/eslint-plugin": ^5.4.0
-    "@typescript-eslint/parser": ^5.4.0
-    "@vue/cli-plugin-babel": ~5.0.0
-    "@vue/cli-plugin-eslint": ~5.0.0
-    "@vue/cli-plugin-pwa": ~5.0.0
-    "@vue/cli-plugin-router": ~5.0.0
-    "@vue/cli-plugin-typescript": ~5.0.0
-    "@vue/cli-plugin-vuex": ~5.0.0
-    "@vue/cli-service": ~5.0.0
-    "@vue/eslint-config-standard": ^6.1.0
-    "@vue/eslint-config-typescript": ^9.1.0
-    autoprefixer: ^10.4.4
-    core-js: ^3.8.3
-    eslint: ^7.32.0
-    eslint-plugin-import: ^2.25.3
-    eslint-plugin-node: ^11.1.0
-    eslint-plugin-promise: ^5.1.0
-    eslint-plugin-vue: ^8.0.3
-    postcss: ^8.4.12
-    register-service-worker: ^1.7.2
-    tailwindcss: ^3.0.24
-    typescript: ~4.5.5
-    vue: ^3.2.13
-    vue-router: ^4.0.3
-    vuex: ^4.0.0
-  languageName: unknown
-  linkType: soft
-
 "aproba@npm:^1.0.3 || ^2.0.0":
   version: 2.0.0
   resolution: "aproba@npm:2.0.0"
@@ -6709,6 +6677,38 @@ __metadata:
   checksum: 42825d119a7e4f5b1a8e7048a86d328cd36bb1ff875d155ce7079d9a0afdd310c198fb310096af358cfa9ecdf643cecf960380686792457dccb36e17efe89eb0
   languageName: node
   linkType: hard
+
+"manabou@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "manabou@workspace:."
+  dependencies:
+    "@typescript-eslint/eslint-plugin": ^5.4.0
+    "@typescript-eslint/parser": ^5.4.0
+    "@vue/cli-plugin-babel": ~5.0.0
+    "@vue/cli-plugin-eslint": ~5.0.0
+    "@vue/cli-plugin-pwa": ~5.0.0
+    "@vue/cli-plugin-router": ~5.0.0
+    "@vue/cli-plugin-typescript": ~5.0.0
+    "@vue/cli-plugin-vuex": ~5.0.0
+    "@vue/cli-service": ~5.0.0
+    "@vue/eslint-config-standard": ^6.1.0
+    "@vue/eslint-config-typescript": ^9.1.0
+    autoprefixer: ^10.4.4
+    core-js: ^3.8.3
+    eslint: ^7.32.0
+    eslint-plugin-import: ^2.25.3
+    eslint-plugin-node: ^11.1.0
+    eslint-plugin-promise: ^5.1.0
+    eslint-plugin-vue: ^8.0.3
+    postcss: ^8.4.12
+    register-service-worker: ^1.7.2
+    tailwindcss: ^3.0.24
+    typescript: ~4.5.5
+    vue: ^3.2.13
+    vue-router: ^4.0.3
+    vuex: ^4.0.0
+  languageName: unknown
+  linkType: soft
 
 "mdn-data@npm:2.0.14":
   version: 2.0.14
