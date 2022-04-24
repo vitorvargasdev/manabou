@@ -1,11 +1,17 @@
 <script setup lang="ts">
-import { onMounted } from 'vue'
+import { ref, onMounted } from 'vue'
 import * as kuromoji from './utils/kuromoji'
 import { Tokenizer } from './utils/KuromojiTypes'
 
+const word = ref('')
+const tokenizer = ref<Tokenizer>()
+
+const search = async (word: string) => {
+  console.log(tokenizer.value?.tokenize(word))
+}
+
 onMounted(async () => {
-  const tokenizer: Tokenizer = await kuromoji.startKuromoji()
-  console.log(tokenizer.tokenize('こんにちは'))
+  tokenizer.value = await kuromoji.startKuromoji()
 })
 
 </script>
@@ -20,12 +26,13 @@ onMounted(async () => {
 
     <div class="md:p-4 flex flex-row justify-center">
       <input
+        v-model="word"
         class="w-full md:w-3/5 rounded-lg shadow-md p-4 text-gray-600"
         type="text"
         placeholder="Digite aqui!"
       >
 
-      <button class="ml-2 p-4 rounded-md shadow-md bg-green-500 hover:bg-green-600 text-white">
+      <button @click.stop="search(word)" class="ml-2 p-4 rounded-md shadow-md bg-green-500 hover:bg-green-600 text-white">
         Pesquisar
       </button>
     </div>
