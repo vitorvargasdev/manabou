@@ -7,7 +7,7 @@ import { Tokenize } from '../utils/KuromojiTypes'
 const kuromoji = useKuromojiStore()
 
 const route = useRoute()
-const keyword = ref<string>('')
+const keyword = ref('')
 const tokenizedKeywords = ref<Tokenize[]>()
 
 const tokenizeKeywords = async () => {
