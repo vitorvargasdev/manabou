@@ -39,15 +39,11 @@ onMounted(async () => {
 
     <div class="p-4">
         <div class="text-2xl text-center">
-            <span v-for="(item, index) in tokenizedKeywords" :key="index" class="mr-1">
-                <span class="japanese_tokenizer_proper_noun" v-if="item.pos === '名詞' && item.pos_detail_1 === '固有名詞'" v-text="item.surface_form" />
+            <span v-for="(item, index) in tokenizedKeywords" :key="index" class="m-1">
+                <span class="japanese_tokenizer" v-if="item.pos !== '記号' && item.pos_detail_1 !== '空白'" v-text="item.surface_form" />
 
-                <span class="japanese_tokenizer_noun" v-if="item.pos === '名詞' && item.pos_detail_1 !== '固有名詞'" v-text="item.surface_form" />
-
-                <span class="japanese_tokenizer_adjetive" v-if="item.pos === '助詞'" v-text="item.surface_form" />
-                <span class="japanese_tokenizer_verb" v-if="item.pos === '動詞'" v-text="item.surface_form" />
-
-                <span class="japanese_tokenizer_white_space" v-if="item.pos === '記号' && item.pos_detail_1 === '空白'" />
+                <span data-tooltip=""
+                    v-if="item.pos === '記号' && item.pos_detail_1 === '空白'" v-text="item.surface_form" />
             </span>
         </div>
     </div>
