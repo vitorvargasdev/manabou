@@ -3,11 +3,15 @@ import { ref, onMounted } from 'vue'
 import { useKuromojiStore } from '@/stores/kuromoji'
 
 const keyword = ref('') // * A word or phrase to tokenize and search
+const loading = ref(true)
 
 const kuromoji = useKuromojiStore()
 
 onMounted(async () => {
   await kuromoji.loadTokenizer()
+    .finally(() => {
+      loading.value = false
+    })
 })
 
 const search = async (keyword: string) => {
@@ -16,6 +20,19 @@ const search = async (keyword: string) => {
 </script>
 
 <template>
+  <div v-show="loading" class="flex items-center justify-center w-full h-full z-50 absolute bg-black bg-opacity-80">
+    <div class="flex justify-center items-center space-x-1 text-sm text-white">
+
+      <svg fill='none' class="w-12 h-12 animate-spin" viewBox="0 0 32 32" xmlns='http://www.w3.org/2000/svg'>
+        <path clip-rule='evenodd'
+          d='M15.165 8.53a.5.5 0 01-.404.58A7 7 0 1023 16a.5.5 0 011 0 8 8 0 11-9.416-7.874.5.5 0 01.58.404z'
+          fill='currentColor' fill-rule='evenodd' />
+      </svg>
+
+      <div>Carregando dicionário ...</div>
+    </div>
+  </div>
+
   <div class="p-4">
     <img src="./assets/logo.png" alt="" class="w-40 mx-auto">
 
