@@ -3,14 +3,6 @@ import { ref, onMounted } from 'vue'
 import { useKuromojiStore } from '@/stores/kuromoji'
 import { useRoute, useRouter } from 'vue-router'
 
-import { hiraToKata, kataToHira } from '@/utils/japanese'
-import { JapaneseToFurigana } from '@/utils/analysis'
-
-// console.log(hiraToKata('あいうえお'))
-// console.log(kataToHira('アイウエオ'))
-// console.log(JapaneseToFurigana('話すことには得意です', 'はなすことにはとくいです'))
-// JapaneseToFurigana('話すことには得意です', 'はなすことにはとくいです')
-
 const route = useRoute()
 const router = useRouter()
 const kuromoji = useKuromojiStore()
