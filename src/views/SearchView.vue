@@ -5,14 +5,15 @@ import { useKuromojiStore } from '@/stores/kuromoji'
 import { Tokenize } from '../utils/KuromojiTypes'
 
 const kuromoji = useKuromojiStore()
-
 const route = useRoute()
+
 const keyword = ref('')
 const tokenizedKeywords = ref<Tokenize[]>()
 
 const tokenizeKeywords = async () => {
   keyword.value = String(route.query.keyword)
   tokenizedKeywords.value = kuromoji.tokenizer.tokenize(keyword.value)
+  console.log(tokenizedKeywords.value)
 }
 
 watch(() => route.query, () => tokenizeKeywords())
@@ -37,8 +38,17 @@ onMounted(async () => {
     </div> -->
 
     <div class="p-4">
-        <span v-for="(item, index) in tokenizedKeywords" :key="index">
-            <span>{{ item.surface_form }}</span>
-        </span>
+        <div class="text-2xl text-center">
+            <span v-for="(item, index) in tokenizedKeywords" :key="index" class="mr-1">
+                <span class="japanese_tokenizer_proper_noun" v-if="item.pos === '名詞' && item.pos_detail_1 === '固有名詞'" v-text="item.surface_form" />
+
+                <span class="japanese_tokenizer_noun" v-if="item.pos === '名詞' && item.pos_detail_1 !== '固有名詞'" v-text="item.surface_form" />
+
+                <span class="japanese_tokenizer_adjetive" v-if="item.pos === '助詞'" v-text="item.surface_form" />
+                <span class="japanese_tokenizer_verb" v-if="item.pos === '動詞'" v-text="item.surface_form" />
+
+                <span class="japanese_tokenizer_white_space" v-if="item.pos === '記号' && item.pos_detail_1 === '空白'" />
+            </span>
+        </div>
     </div>
 </template>
