@@ -9,9 +9,7 @@ const kuromoji = useKuromojiStore()
 
 onMounted(async () => {
   await kuromoji.loadTokenizer()
-    .finally(() => {
-      loading.value = false
-    })
+  loading.value = false
 })
 
 const search = async (keyword: string) => {
