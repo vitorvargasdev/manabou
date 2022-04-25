@@ -1,19 +1,18 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import * as kuromoji from './utils/kuromoji'
-import { Tokenizer, Tokenize } from './utils/KuromojiTypes'
+import { useKuromojiStore } from '@/stores/kuromoji'
 
 const keyword = ref('') // * A word or phrase to tokenize and search
-const tokenizer = ref<Tokenizer>()
-const tokenizedKeywords = ref<Tokenize[]>()
 
-const search = async (keyword: string) => {
-  tokenizedKeywords.value = tokenizer.value?.tokenize(keyword)
-}
+const kuromoji = useKuromojiStore()
 
 onMounted(async () => {
-  tokenizer.value = await kuromoji.startKuromoji()
+  await kuromoji.loadTokenizer()
 })
+
+const search = async (keyword: string) => {
+  console.log(keyword)
+}
 </script>
 
 <template>
