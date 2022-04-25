@@ -15,12 +15,7 @@ const tokenizeKeywords = async () => {
   tokenizedKeywords.value = kuromoji.tokenizer.tokenize(keyword.value)
 }
 
-watch(
-  () => route.query,
-  () => {
-    tokenizeKeywords()
-  }
-)
+watch(() => route.query, () => tokenizeKeywords())
 
 onMounted(async () => {
   tokenizeKeywords()
