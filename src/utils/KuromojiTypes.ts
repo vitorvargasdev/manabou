@@ -38,4 +38,4 @@ type KuromojiBuilder = {
     ) => KuromojiBuild
 }
 
-export { Tokenizer, KuromojiBuilder }
+export { Tokenizer, Tokenize, KuromojiBuilder }
