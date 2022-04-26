@@ -1,6 +1,6 @@
 import DiffMatchPatch from 'diff-match-patch'
 import { hiraToKata, kataToHira } from './japanese'
-import { Tokenize } from './KuromojiTypes'
+import { Tokenize } from './kuromoji-types'
 
 const dmp = new DiffMatchPatch()
 

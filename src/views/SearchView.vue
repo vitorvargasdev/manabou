@@ -1,35 +1,5 @@
 <script setup lang="ts">
-import { onMounted, watch, ref, computed } from 'vue'
-import { useRoute } from 'vue-router'
-import { useKuromojiStore } from '@/stores/kuromoji'
-import { Tokenize } from '../utils/KuromojiTypes'
-import { furiganaToKuromoji } from '@/utils/analysis'
-
-const kuromoji = useKuromojiStore()
-const route = useRoute()
-
-const keyword = ref('')
-const tokenizedKeywords = ref<Tokenize[]>()
-
-const getFirstWordAvailable = computed(() => {
-  return tokenizedKeywords.value?.find(
-    token => token.pos !== '記号' &&
-        token.pos_detail_1 !== '空白' &&
-        token.pos_detail_1 !== '数'
-  )
-})
-
-const tokenizeKeywords = async () => {
-  keyword.value = String(route.query.keyword)
-  tokenizedKeywords.value = kuromoji.tokenizer.tokenize(keyword.value)
-}
-
-watch(() => route.query, () => tokenizeKeywords())
-
-onMounted(async () => {
-  tokenizeKeywords()
-  console.log(getFirstWordAvailable.value)
-})
+import ListWordsVue from '@/components/Search/ListWords.vue'
 </script>
 
 <template>
@@ -47,15 +17,6 @@ onMounted(async () => {
     </div> -->
 
     <div class="p-4">
-        <div class="text-3xl text-center">
-            <div v-for="(item, index) in tokenizedKeywords" :key="index" class="inline-block mt-4 m-1">
-                <span class="japanese_tokenizer_normal" v-if="item.basic_form === '*' && item.pos_detail_1 === '数'" v-html="furiganaToKuromoji(item)" />
-
-                <span class="japanese_tokenizer" v-if="item.pos !== '記号' && item.pos_detail_1 !== '空白' && !(item.basic_form === '*' && item.pos_detail_1 === '数')" v-html="furiganaToKuromoji(item)" />
-
-                <span data-tooltip=""
-                    v-if="item.pos === '記号' && item.pos_detail_1 === '空白'" v-text="item.surface_form" />
-            </div>
-        </div>
+        <ListWordsVue />
     </div>
 </template>

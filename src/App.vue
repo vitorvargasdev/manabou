@@ -1,31 +1,33 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { useKuromojiStore } from '@/stores/kuromoji'
+import { useSearchStore } from '@/stores/search'
 import { useRoute, useRouter } from 'vue-router'
 
 const route = useRoute()
 const router = useRouter()
 const kuromoji = useKuromojiStore()
+const searchStore = useSearchStore()
 
 const keyword = ref('') // * A word or phrase to tokenize and search
 const loading = ref(true)
 
-const setDefaultKeyword = () => {
-  keyword.value = route.query.keyword !== undefined
-    ? String(route.query.keyword)
-    : ''
+const setDefaultKeyword = async () => {
+  await searchStore.setDefaultKeyword(String(route.query.keyword))
+  keyword.value = searchStore.keyword
 }
 
-const search = async (keyword: string) => router.push(
-  {
-    name: 'search',
-    query: { keyword }
-  }
-)
+const search = async (keyword: string) => {
+  router.push({ name: 'search', query: { keyword } })
+
+  searchStore.$patch({
+    keyword: keyword
+  })
+}
 
 onMounted(async () => {
   await kuromoji.loadTokenizer()
-  setDefaultKeyword()
+  await setDefaultKeyword()
   loading.value = false
 })
 </script>
