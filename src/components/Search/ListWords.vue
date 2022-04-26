@@ -21,7 +21,7 @@ const getFirstWord = (tokens: Tokenize[]): string => {
     token.pos !== '記号' &&
         !(token.surface_form).match(/[a-z]/i) &&
         token.pos_detail_1 !== '空白' &&
-        !(token.surface_form).match(/[1-9]/i)
+        !(token.surface_form).match(/[0-9]/i)
   )[0]?.surface_form || ''
 }
 
@@ -39,7 +39,7 @@ onMounted(async () => {
 <template>
     <div class="text-3xl text-center">
         <div v-for="(item, index) in listWords" :key="index" class="inline-block mt-4 m-1">
-            <span class="japanese_tokenizer_normal" v-if="(item.surface_form).match(/[1-9]/i) || (item.surface_form).match(/[a-z]/i)"
+            <span class="japanese_tokenizer_normal" v-if="(item.surface_form).match(/[0-9]/i) || (item.surface_form).match(/[a-z]/i)"
                 v-html="furiganaToKuromoji(item)" />
 
             <span class="japanese_tokenizer_selected" v-if="
