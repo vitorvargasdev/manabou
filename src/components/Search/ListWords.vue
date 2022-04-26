@@ -11,31 +11,37 @@ const searchStore = useSearchStore()
 const listWords = ref<Tokenize[]>()
 const selectedWord = ref('')
 
-const getFirstWord = (tokens: Tokenize[]) => {
-  console.log(tokens)
-//   return tokens.filter(token =>
-//     token.pos !== '記号' &&
-//         token.pos_detail_1 !== '空白' &&
-//         token.pos_detail_1 !== '数'
-//   )[0]
-}
-
 const tokenizeListWords = async () => {
   listWords.value = await kuromoji.tokenize(searchStore.keyword)
+}
 
-  console.log(searchStore.selected_word)
-//   if (searchStore.selected_word.length > 0) {
-//     selectedWord.value = searchStore.selected_word
-//   } else {
-//     // selectedWord.value = (getFirstWord(listWords.value))
-//     console.log(getFirstWord(listWords.value))
-//   }
+const setDefaultSelectedWord = async () => {
+  if (!listWords.value) return
+
+  searchStore.selected_word
+    ? selectedWord.value = searchStore.selected_word
+    : selectedWord.value = getFirstWord(listWords.value).surface_form
+
+  searchStore.setDefaultWord(selectedWord.value)
+}
+
+const getFirstWord = (tokens: Tokenize[]) => {
+  return tokens.filter(token =>
+    token.pos !== '記号' &&
+        token.pos_detail_1 !== '空白' &&
+        token.pos_detail_1 !== '数'
+  )[0]
+}
+
+const selectWord = (word: string) => {
+  selectedWord.value = word
 }
 
 watch(() => searchStore.keyword, async () => await tokenizeListWords())
 
 onMounted(async () => {
   await tokenizeListWords()
+  setDefaultSelectedWord()
 })
 </script>
 
@@ -45,9 +51,20 @@ onMounted(async () => {
             <span class="japanese_tokenizer_normal" v-if="item.basic_form === '*' && item.pos_detail_1 === '数'"
                 v-html="furiganaToKuromoji(item)" />
 
-            <span class="japanese_tokenizer"
-                v-if="item.pos !== '記号' && item.pos_detail_1 !== '空白' && !(item.basic_form === '*' && item.pos_detail_1 === '数')"
-                v-html="furiganaToKuromoji(item)" />
+            <span class="japanese_tokenizer_selected" v-if="
+                item.surface_form === selectedWord
+            " v-html="furiganaToKuromoji(item)" />
+
+            <span class="japanese_tokenizer" v-if="
+                item.surface_form !== selectedWord &&
+                item.pos !== '記号' &&
+                item.pos_detail_1 !== '空白' &&
+                !(item.basic_form === '*' &&
+                    item.pos_detail_1 === '数'
+                )
+            "
+            @click.stop="selectWord(item.surface_form)"
+            v-html="furiganaToKuromoji(item)" />
 
             <span data-tooltip="" v-if="item.pos === '記号' && item.pos_detail_1 === '空白'" v-text="item.surface_form" />
         </div>

@@ -20,5 +20,5 @@ body {
 
 .japanese_tokenizer_selected {
     font-family: "Sawarabi Mincho";
-    @apply box-border border-b-2 border-b-black;
+    @apply box-border border-b-4 border-x-2 border-b-black;
 }
