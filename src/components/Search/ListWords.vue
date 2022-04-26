@@ -9,9 +9,27 @@ const kuromoji = useKuromojiStore()
 const searchStore = useSearchStore()
 
 const listWords = ref<Tokenize[]>()
+const selectedWord = ref('')
+
+const getFirstWord = (tokens: Tokenize[]) => {
+  console.log(tokens)
+//   return tokens.filter(token =>
+//     token.pos !== '記号' &&
+//         token.pos_detail_1 !== '空白' &&
+//         token.pos_detail_1 !== '数'
+//   )[0]
+}
 
 const tokenizeListWords = async () => {
   listWords.value = await kuromoji.tokenize(searchStore.keyword)
+
+  console.log(searchStore.selected_word)
+//   if (searchStore.selected_word.length > 0) {
+//     selectedWord.value = searchStore.selected_word
+//   } else {
+//     // selectedWord.value = (getFirstWord(listWords.value))
+//     console.log(getFirstWord(listWords.value))
+//   }
 }
 
 watch(() => searchStore.keyword, async () => await tokenizeListWords())

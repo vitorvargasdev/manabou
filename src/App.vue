@@ -13,12 +13,12 @@ const keyword = ref('') // * A word or phrase to tokenize and search
 const loading = ref(true)
 
 const setDefaultKeyword = async () => {
-  await searchStore.setDefaultKeyword(String(route.query.keyword))
+  await searchStore.setDefaultKeyword(String(route.query.keyword || ''))
   keyword.value = searchStore.keyword
 }
 
 const setDefaultWord = async () => {
-  await searchStore.setDefaultWord(String(route.query.word))
+  await searchStore.setDefaultWord(String(route.query.word || ''))
 }
 
 const search = async (keyword: string) => {
