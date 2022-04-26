@@ -51,7 +51,7 @@ onMounted(async () => {
                 item.pos !== '記号' &&
                 !(item.surface_form).match(/[a-z]/i) &&
                 item.pos_detail_1 !== '空白' &&
-                !(item.surface_form).match(/[1-9]/i)
+                !(item.surface_form).match(/[0-9]/i)
             "
             @click.stop="selectWord(item.surface_form)"
             v-html="furiganaToKuromoji(item)" />
