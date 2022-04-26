@@ -14,7 +14,6 @@ const selectedWord = ref('')
 const tokenizeListWords = async () => {
   listWords.value = await kuromoji.tokenize(searchStore.keyword)
   selectedWord.value = getFirstWord(listWords.value) || ''
-  console.log(listWords.value)
 }
 
 const getFirstWord = (tokens: Tokenize[]): string => {
