@@ -8,9 +8,14 @@ body {
 
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans+JP&display=swap');
 
+.japanese_tokenizer_normal {
+    font-family: "Sawarabi Mincho";
+    @apply box-border;
+}
+
 .japanese_tokenizer {
     font-family: "Sawarabi Mincho";
-    @apply box-border border-b border-b-black hover:border-b-2;
+    @apply box-content border-b border-x border-y border-b-black hover:border-b-2;
 }
 
 .japanese_tokenizer_selected {

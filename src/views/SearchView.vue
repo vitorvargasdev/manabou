@@ -38,13 +38,15 @@ onMounted(async () => {
     </div> -->
 
     <div class="p-4">
-        <div class="text-2xl text-center">
-            <span v-for="(item, index) in tokenizedKeywords" :key="index" class="m-1">
-                <span class="japanese_tokenizer" v-if="item.pos !== '記号' && item.pos_detail_1 !== '空白'" v-html="furiganaToKuromoji(item)" />
+        <div class="text-3xl text-center">
+            <div v-for="(item, index) in tokenizedKeywords" :key="index" class="inline-block mt-4 m-1">
+                <span class="japanese_tokenizer_normal" v-if="item.basic_form === '*' && item.pos_detail_1 === '数'" v-html="furiganaToKuromoji(item)" />
+
+                <span class="japanese_tokenizer" v-if="item.pos !== '記号' && item.pos_detail_1 !== '空白' && !(item.basic_form === '*' && item.pos_detail_1 === '数')" v-html="furiganaToKuromoji(item)" />
 
                 <span data-tooltip=""
                     v-if="item.pos === '記号' && item.pos_detail_1 === '空白'" v-text="item.surface_form" />
-            </span>
+            </div>
         </div>
     </div>
 </template>
