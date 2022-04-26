@@ -14,6 +14,11 @@ export const useSearchStore = defineStore('search', {
       return defaultValue !== undefined
         ? (this.keyword = defaultValue)
         : ''
+    },
+    async setDefaultWord (defaultValue?: string) {
+      return defaultValue !== undefined
+        ? (this.selected_word = defaultValue)
+        : ''
     }
   }
 })

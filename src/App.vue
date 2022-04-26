@@ -17,6 +17,10 @@ const setDefaultKeyword = async () => {
   keyword.value = searchStore.keyword
 }
 
+const setDefaultWord = async () => {
+  await searchStore.setDefaultWord(String(route.query.word))
+}
+
 const search = async (keyword: string) => {
   router.push({ name: 'search', query: { keyword } })
   searchStore.setKeyword(keyword)
@@ -25,6 +29,7 @@ const search = async (keyword: string) => {
 onMounted(async () => {
   await kuromoji.loadTokenizer()
   await setDefaultKeyword()
+  await setDefaultWord()
   loading.value = false
 })
 </script>
