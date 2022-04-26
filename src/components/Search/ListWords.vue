@@ -13,16 +13,7 @@ const selectedWord = ref('')
 
 const tokenizeListWords = async () => {
   listWords.value = await kuromoji.tokenize(searchStore.keyword)
-}
-
-const setDefaultSelectedWord = async () => {
-  if (!listWords.value) return
-
-  searchStore.selected_word
-    ? selectedWord.value = searchStore.selected_word
-    : selectedWord.value = getFirstWord(listWords.value).surface_form
-
-  searchStore.setDefaultWord(selectedWord.value)
+  selectedWord.value = getFirstWord(listWords.value).surface_form
 }
 
 const getFirstWord = (tokens: Tokenize[]) => {
@@ -41,7 +32,6 @@ watch(() => searchStore.keyword, async () => await tokenizeListWords())
 
 onMounted(async () => {
   await tokenizeListWords()
-  setDefaultSelectedWord()
 })
 </script>
 
