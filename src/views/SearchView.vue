@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, watch, ref } from 'vue'
+import { onMounted, watch, ref, computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { useKuromojiStore } from '@/stores/kuromoji'
 import { Tokenize } from '../utils/KuromojiTypes'
@@ -11,6 +11,14 @@ const route = useRoute()
 const keyword = ref('')
 const tokenizedKeywords = ref<Tokenize[]>()
 
+const getFirstWordAvailable = computed(() => {
+  return tokenizedKeywords.value?.find(
+    token => token.pos !== '記号' &&
+        token.pos_detail_1 !== '空白' &&
+        token.pos_detail_1 !== '数'
+  )
+})
+
 const tokenizeKeywords = async () => {
   keyword.value = String(route.query.keyword)
   tokenizedKeywords.value = kuromoji.tokenizer.tokenize(keyword.value)
@@ -20,6 +28,7 @@ watch(() => route.query, () => tokenizeKeywords())
 
 onMounted(async () => {
   tokenizeKeywords()
+  console.log(getFirstWordAvailable.value)
 })
 </script>
 
