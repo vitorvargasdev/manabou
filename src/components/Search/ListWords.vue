@@ -14,17 +14,10 @@ const tokenizeListWords = async () => {
   listWords.value = await kuromoji.tokenize(searchStore.keyword)
 }
 
-// const setSelectedWord = (word: Tokenize) => {
-//   searchStore.$patch({
-//     selectedWord: word
-//   })
-// }
-
 watch(() => searchStore.keyword, async () => await tokenizeListWords())
 
 onMounted(async () => {
   await tokenizeListWords()
-//   await setSelectedWord()
 })
 </script>
 
