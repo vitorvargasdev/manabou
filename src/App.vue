@@ -19,10 +19,7 @@ const setDefaultKeyword = async () => {
 
 const search = async (keyword: string) => {
   router.push({ name: 'search', query: { keyword } })
-
-  searchStore.$patch({
-    keyword: keyword
-  })
+  searchStore.setKeyword(keyword)
 }
 
 onMounted(async () => {

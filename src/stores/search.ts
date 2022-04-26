@@ -7,6 +7,9 @@ export const useSearchStore = defineStore('search', {
   }),
 
   actions: {
+    async setKeyword (keyword: string) {
+      this.keyword = keyword
+    },
     async setDefaultKeyword (defaultValue?: string) {
       return defaultValue !== undefined
         ? (this.keyword = defaultValue)
