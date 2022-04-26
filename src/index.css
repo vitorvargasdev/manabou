@@ -15,7 +15,7 @@ body {
 
 .japanese_tokenizer {
     font-family: "Sawarabi Mincho";
-    @apply box-content border-b border-x border-y border-b-black hover:border-b-2;
+    @apply box-content border-b border-x border-b-black hover:border-b-2;
 }
 
 .japanese_tokenizer_selected {
