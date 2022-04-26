@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import * as kuromoji from '../utils/kuromoji'
-import { Tokenizer } from '../utils/KuromojiTypes'
+import { Tokenizer } from '../utils/kuromoji-types'
 
 export const useKuromojiStore = defineStore('kuromoji', {
   state: () => ({

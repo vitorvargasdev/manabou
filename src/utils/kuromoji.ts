@@ -1,4 +1,4 @@
-import { KuromojiBuilder, Tokenizer } from './KuromojiTypes'
+import { KuromojiBuilder, Tokenizer } from './kuromoji-types'
 
 declare const kuromoji: KuromojiBuilder
 
