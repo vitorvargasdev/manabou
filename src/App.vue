@@ -30,7 +30,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div v-show="loading" class="flex items-center justify-center w-full h-full z-50 absolute bg-black bg-opacity-80">
+  <div v-show="loading" class="flex items-center justify-center w-full h-full z-50 fixed bg-black bg-opacity-80">
     <div class="flex justify-center items-center space-x-1 text-sm text-white">
 
       <svg fill='none' class="w-12 h-12 animate-spin" viewBox="0 0 32 32" xmlns='http://www.w3.org/2000/svg'>

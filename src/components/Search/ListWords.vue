@@ -13,7 +13,7 @@ const selectedWord = ref('')
 
 const tokenizeListWords = async () => {
   listWords.value = await kuromoji.tokenize(searchStore.keyword)
-  selectedWord.value = getFirstWord(listWords.value) || ''
+  selectWord(getFirstWord(listWords.value) || '')
 }
 
 const getFirstWord = (tokens: Tokenize[]): string => {
@@ -27,6 +27,7 @@ const getFirstWord = (tokens: Tokenize[]): string => {
 
 const selectWord = (word: string) => {
   selectedWord.value = word
+  searchStore.setSelectedWord(word)
 }
 
 watch(() => searchStore.keyword, async () => await tokenizeListWords())

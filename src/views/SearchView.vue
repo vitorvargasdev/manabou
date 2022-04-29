@@ -1,9 +1,14 @@
 <script setup lang="ts">
+import { useSearchStore } from '@/stores/search'
 import ListWordsVue from '@/components/Search/ListWords.vue'
+import SearchResult from '@/components/Search/SearchResult.vue'
+
+const searchStore = useSearchStore()
+
 </script>
 
 <template>
-    <!-- <div class="flex items-center justify-center w-full h-full z-50 absolute left-0 top-0 bg-black bg-opacity-80">
+    <div v-if="searchStore.loading" class="flex items-center justify-center w-full h-full z-50 fixed left-0 top-0 bg-black bg-opacity-80">
         <div class="flex justify-center items-center space-x-1 text-sm text-white">
 
             <svg fill='none' class="w-12 h-12 animate-spin" viewBox="0 0 32 32" xmlns='http://www.w3.org/2000/svg'>
@@ -14,9 +19,10 @@ import ListWordsVue from '@/components/Search/ListWords.vue'
 
             <div>Pesquisando ...</div>
         </div>
-    </div> -->
+    </div>
 
     <div class="p-4">
         <ListWordsVue />
+        <SearchResult />
     </div>
 </template>

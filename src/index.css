@@ -8,17 +8,21 @@ body {
 
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans+JP&display=swap');
 
+.japanese {
+    font-family: "Sawarabi Mincho";
+}
+
 .japanese_tokenizer_normal {
     font-family: "Sawarabi Mincho";
-    @apply box-border;
+    @apply cursor-default box-border;
 }
 
 .japanese_tokenizer {
     font-family: "Sawarabi Mincho";
-    @apply box-content border-b border-x border-b-black hover:border-b-2;
+    @apply cursor-pointer box-content border-b border-x border-b-black hover:border-b-2;
 }
 
 .japanese_tokenizer_selected {
     font-family: "Sawarabi Mincho";
-    @apply box-border border-b-4 border-x-2 border-b-black;
+    @apply cursor-default box-border border-b-4 border-x-2 border-b-black;
 }
