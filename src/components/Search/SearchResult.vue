@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { watchEffect, watch, ref } from 'vue'
+import { watch, ref } from 'vue'
 import { useKuromojiStore } from '@/stores/kuromoji'
 import { useSearchStore } from '@/stores/search'
 import { JapaneseToFurigana } from '@/utils/analysis'
@@ -18,7 +18,7 @@ const fetchedData = ref<Word[]>()
 const fetchWord = async (word: string) => {
   searchStore.setLoading(true)
 
-  await axios.get(`https://manabou.herokuapp.com/fetch_word?word=${word}`)
+  await axios.get(`https://dict.vitorvargas.dev/search?keyword=${word}&origin=manabou`)
     .then(res => {
       fetchedData.value = res.data
     })
